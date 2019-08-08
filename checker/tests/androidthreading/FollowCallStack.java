@@ -9,6 +9,9 @@ public class FollowCallStack {
         onUiThread();
     }
 
+    @AnyThread
+    void onAnyThread() {}
+
     @WorkerThread
     void onWorkerThread() {}
 
@@ -18,8 +21,11 @@ public class FollowCallStack {
         // ::  error: (call.invalid.effect)
         onUiThread();
 
-        // TODO: it should give error, but currently it do not.
+        // ok
         unannotatedCallsUiThread();
+
+        // ok
+        onAnyThread();
 
         // ok
         onWorkerThread();
